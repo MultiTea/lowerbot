@@ -7,5 +7,6 @@
   "[typescript]": {
     "editor.defaultFormatter": "denoland.vscode-deno"
   },
-  "deno.enable": true
+  "deno.enable": true,
+  "deno.importMap": "./supabase/functions/import_map.json"
 }
