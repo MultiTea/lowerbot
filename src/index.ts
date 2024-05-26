@@ -20,5 +20,5 @@ bot.catch((err: Error) => {
   console.error("Error in bot:", err);
 });
 
-// TODO: Handle errors from this.
+// TODO: Handle potential errors from this.
 bot.start();
