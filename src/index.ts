@@ -1,4 +1,4 @@
-import { Bot } from "https://deno.land/x/grammy@v1.23.0/mod.ts";
+import { Bot } from "grammY";
 import { test } from "./test.ts";
 import { newMemberPoll } from "./newMember/pollManager.ts";
 import { newMemberWelcome } from "./newMember/welcomeMessage.ts";

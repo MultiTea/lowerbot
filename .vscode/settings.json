@@ -1,6 +1,6 @@
 {
   "deno.enablePaths": [
-    "supabase/functions"
+    "src"
   ],
   "deno.lint": true,
   "deno.unstable": true,
@@ -8,5 +8,5 @@
     "editor.defaultFormatter": "denoland.vscode-deno"
   },
   "deno.enable": true,
-  "deno.importMap": "./supabase/functions/import_map.json"
+  "deno.importMap": "./src/import_map.json"
 }

@@ -1,4 +1,4 @@
-import { Composer } from "https://deno.land/x/grammy@v1.23.0/mod.ts";
+import { Composer } from "grammY";
 
 // Fichier contenant des commandes pour tester et vérifier le status du bot
 
