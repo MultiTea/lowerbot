@@ -1,4 +1,4 @@
-import { Composer, GrammyError } from "grammY";
+import { Composer, GrammyError } from "https://deno.land/x/grammy@v1.23.0/mod.ts";
 
 export const newMemberPoll = new Composer();
 

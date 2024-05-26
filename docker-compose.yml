@@ -1,0 +1,9 @@
+version: "3"
+
+services:
+  lowerbot:
+    build: .
+    container_name: lowerbot-test
+    restart: always
+    environment:
+      BOT_TOKEN: ${BOT_TOKEN}

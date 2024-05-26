@@ -1,4 +1,4 @@
-import { Bot, webhookCallback } from "grammY";
+import { Bot } from "https://deno.land/x/grammy@v1.23.0/mod.ts";
 import { test } from "./test.ts";
 import { newMemberPoll } from "./newMember/pollManager.ts";
 import { newMemberWelcome } from "./newMember/welcomeMessage.ts";
@@ -20,20 +20,5 @@ bot.catch((err: Error) => {
   console.error("Error in bot:", err);
 });
 
-const handleUpdate = webhookCallback(bot, "std/http");
-
-Deno.serve(async (req) => {
-  const headers = req.headers;
-  try {
-    const url = new URL(req.url);
-    if (url.searchParams.get("secret") !== Deno.env.get("FUNCTION_SECRET")) {
-      return new Response("not allowed", { status: 405 });
-    }
-
-    return await handleUpdate(req);
-  } catch (err) {
-    console.log(headers);
-    console.error(err);
-  }
-  return new Response();
-});
+// TODO: Handle potential errors from this.
+bot.start();

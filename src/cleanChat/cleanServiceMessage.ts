@@ -1,4 +1,4 @@
-import { Composer } from "grammY";
+import { Composer } from "https://deno.land/x/grammy@v1.23.0/mod.ts";
 
 export const cleanService = new Composer();
 
