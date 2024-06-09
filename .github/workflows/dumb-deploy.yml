@@ -1,0 +1,20 @@
+# Dumb deploy deploys dumbly. It just connect to the remote server and asks it to rebuild and update the bot.
+name: remote ssh command
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    name: Deploy
+    runs-on: ubuntu-latest
+    steps:
+    - name: Deploy to Fido
+      uses: appleboy/ssh-action@v1.0.3
+      with:
+        host: ${{ secrets.IP_ADDRESS_FIDO }}
+        username: ${{ secrets.USER_NAME_FIDO }}
+        key: ${{ secrets.PRIVATE_SSH_KEY_FIDO }}
+        port: 22
+        script: bash /home/lowerbot-runtime/pull-deploy.sh
