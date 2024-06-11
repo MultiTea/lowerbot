@@ -6,5 +6,5 @@ export const commands = new Composer();
 
 commands.command(
   "areyouokay",
-  (ctx) => ctx.reply(`Up and running : ${Date.now}`),
+  (ctx) => ctx.reply(`Up and running : ${Date.now()}`),
 );
