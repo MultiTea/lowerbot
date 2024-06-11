@@ -8,6 +8,6 @@ commands.command(
   "areyouokay",
   (ctx) => {
     const timeNow = new Date();
-    ctx.reply(`Up and running : ${timeNow.toISOString()}`);
+    ctx.reply(`Up and running : ${timeNow.toUTCString()}`);
   },
 );
