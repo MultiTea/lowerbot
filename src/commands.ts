@@ -5,6 +5,6 @@ import { Composer } from "grammY";
 export const commands = new Composer();
 
 commands.command(
-  "areyouokay?",
+  "areyouokay",
   (ctx) => ctx.reply(`Up and running : ${Date.now}`),
 );
