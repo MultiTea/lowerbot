@@ -1,5 +1,5 @@
 import { Bot } from "grammY";
-import { test } from "./test.ts";
+import { commands } from "./commands.ts";
 import { newMemberPoll } from "./newMember/pollManager.ts";
 import { newMemberWelcome } from "./newMember/welcomeMessage.ts";
 
@@ -10,7 +10,7 @@ if (!token) throw new Error("BOT_TOKEN is unset");
 const bot = new Bot(token);
 
 // Commandes de test
-bot.use(test);
+bot.use(commands);
 
 // Gestion des demandes et ajout des nouveaux membres
 bot.use(newMemberPoll);
