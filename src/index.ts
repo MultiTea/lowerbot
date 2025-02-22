@@ -1,24 +1,48 @@
-import { Bot } from "grammY";
-import { commands } from "./commands.ts";
-import { newMemberPoll } from "./newMember/pollManager.ts";
-import { newMemberWelcome } from "./newMember/welcomeMessage.ts";
+// src/index.ts
+import { TelegramBot } from "./core/bot.ts";
+import { getMemberFeatures } from "./features/members/index.ts";
+import { getModerationFeatures } from "./features/moderation/index.ts";
+import { getCommandFeatures } from "./features/commands/index.ts";
+import { createLogger } from "./utils/logger.ts";
 
-// Fournir le token du bot
-const token = Deno.env.get("BOT_TOKEN");
-if (!token) throw new Error("BOT_TOKEN is unset");
+const logger = createLogger("Main");
 
-const bot = new Bot(token);
+async function main() {
+  try {
+    logger.info("Initializing bot...");
 
-// Commandes de test
-bot.use(commands);
+    const bot = new TelegramBot();
 
-// Gestion des demandes et ajout des nouveaux membres
-bot.use(newMemberPoll);
-bot.use(newMemberWelcome);
+    // Register all features
+    const memberFeatures = getMemberFeatures();
+    memberFeatures.forEach((feature) => bot.registerFeature(feature));
 
-bot.catch((err: Error) => {
-  console.error("Error in bot:", err);
+    const moderationFeatures = getModerationFeatures();
+    moderationFeatures.forEach((feature) => bot.registerFeature(feature));
+
+    const commandFeatures = getCommandFeatures();
+    commandFeatures.forEach((feature) => bot.registerFeature(feature));
+
+    // Start the bot
+    await bot.start();
+
+    logger.info("Bot started successfully");
+  } catch (error) {
+    logger.error("Failed to start bot", error);
+    Deno.exit(1);
+  }
+}
+
+// Handle process signals
+Deno.addSignalListener("SIGINT", () => {
+  logger.info("Received SIGINT signal. Shutting down...");
+  Deno.exit(0);
 });
 
-// TODO: Handle potential errors from this.
-bot.start();
+Deno.addSignalListener("SIGTERM", () => {
+  logger.info("Received SIGTERM signal. Shutting down...");
+  Deno.exit(0);
+});
+
+// Run the application
+main();
